@@ -46,6 +46,9 @@ import io.esastack.restlight.server.spi.ExceptionHandlerFactory;
 import io.quarkus.runtime.annotations.QuarkusMain;
 import org.jboss.logging.Logger;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 @QuarkusMain
 public class QuickStart {
 
@@ -115,6 +118,9 @@ public class QuickStart {
 
         restlight.start();
 
+        Date date = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd :hh:mm:ss");
+        System.out.println(dateFormat.format(date) + ":QuickStart started...");
         LOG.error("QuickStart started...");
 
         restlight.await();
