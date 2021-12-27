@@ -119,7 +119,7 @@ public class QuickStart {
         restlight.start();
 
         Date date = new Date();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd :hh:mm:ss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd :hh:mm:ss.SSS");
         System.out.println(dateFormat.format(date) + ":QuickStart started...");
         LOG.error("QuickStart started...");
 
