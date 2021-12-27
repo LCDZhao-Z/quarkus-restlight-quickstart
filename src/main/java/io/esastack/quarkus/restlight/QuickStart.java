@@ -15,6 +15,8 @@
  */
 package io.esastack.quarkus.restlight;
 
+import esa.commons.logging.Logger;
+import esa.commons.logging.LoggerFactory;
 import esa.commons.spi.SpiLoader;
 import io.esastack.commons.net.buffer.BufferAllocator;
 import io.esastack.commons.net.internal.buffer.BufferProvider;
@@ -44,7 +46,6 @@ import io.esastack.restlight.core.util.RestlightVer;
 import io.esastack.restlight.server.route.ExceptionHandler;
 import io.esastack.restlight.server.spi.ExceptionHandlerFactory;
 import io.quarkus.runtime.annotations.QuarkusMain;
-import org.jboss.logging.Logger;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -54,7 +55,7 @@ public class QuickStart {
 
     public static void main(String[] args) {
 
-        final Logger LOG = Logger.getLogger(QuickStart.class);
+        final Logger LOG = LoggerFactory.getLogger(QuickStart.class);
 
         LOG.error("QuickStart start...");
         System.err.println(RestlightVer.version());
