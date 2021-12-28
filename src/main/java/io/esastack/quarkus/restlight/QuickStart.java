@@ -45,19 +45,22 @@ import io.esastack.restlight.core.spi.RouteMethodLocatorFactory;
 import io.esastack.restlight.core.util.RestlightVer;
 import io.esastack.restlight.server.route.ExceptionHandler;
 import io.esastack.restlight.server.spi.ExceptionHandlerFactory;
+import io.quarkus.runtime.Quarkus;
+import io.quarkus.runtime.QuarkusApplication;
 import io.quarkus.runtime.annotations.QuarkusMain;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 @QuarkusMain
-public class QuickStart {
+public class QuickStart implements QuarkusApplication {
 
     public static void main(String[] args) {
-        System.setProperty("org.graalvm.nativeimage.imagecode", "buildtime");
+        Quarkus.run(QuickStart.class, args);
+    }
+
+    @Override
+    public int run(String... args) {
         final Logger LOG = LoggerFactory.getLogger(QuickStart.class);
 
-        LOG.error("QuickStart start...");
+        LOG.info("QuickStart start...");
         System.err.println(RestlightVer.version());
 
         System.out.println("BufferAllocator:==>" + SpiLoader.cached(BufferAllocator.class).getAll());
@@ -118,14 +121,10 @@ public class QuickStart {
         restlight.address(9999);
 
         restlight.start();
-
-        Date date = new Date();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd :hh:mm:ss.SSS");
-        System.out.println(dateFormat.format(date) + ":QuickStart started...");
-        LOG.error("QuickStart started...");
+        LOG.info("QuickStart started...");
 
         restlight.await();
+        return 0;
     }
-
 }
 
