@@ -54,7 +54,6 @@ import java.util.Date;
 public class QuickStart {
 
     public static void main(String[] args) {
-        System.setProperty("org.graalvm.nativeimage.imagecode", "buildtime");
         final Logger LOG = LoggerFactory.getLogger(QuickStart.class);
 
         LOG.error("QuickStart start...");
