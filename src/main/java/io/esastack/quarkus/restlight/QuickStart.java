@@ -45,19 +45,16 @@ import io.esastack.restlight.core.spi.RouteMethodLocatorFactory;
 import io.esastack.restlight.core.util.RestlightVer;
 import io.esastack.restlight.server.route.ExceptionHandler;
 import io.esastack.restlight.server.spi.ExceptionHandlerFactory;
-import io.quarkus.bootstrap.logging.InitialConfigurator;
 import io.quarkus.runtime.annotations.QuarkusMain;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.ConsoleHandler;
 
 @QuarkusMain
 public class QuickStart {
 
     public static void main(String[] args) {
-
-//        InitialConfigurator.DELAYED_HANDLER.addHandler(new ConsoleHandler());
+        System.setProperty("org.graalvm.nativeimage.imagecode", "buildtime");
         final Logger LOG = LoggerFactory.getLogger(QuickStart.class);
 
         LOG.error("QuickStart start...");
