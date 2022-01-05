@@ -15,13 +15,20 @@
  */
 package io.esastack.quarkus.restlight;
 
+import esa.commons.StringUtils;
 import esa.commons.logging.Logger;
 import esa.commons.logging.LoggerFactory;
+import esa.commons.spi.SpiLoader;
 import io.esastack.quarkus.restlight.springmvc.HelloController;
 import io.esastack.restlight.core.Restlight;
+import io.esastack.restlight.core.spi.ResponseEntityChannelFactory;
+import io.esastack.restlight.core.util.Constants;
+import io.esastack.restlight.core.util.RestlightVer;
 import io.quarkus.runtime.Quarkus;
 import io.quarkus.runtime.QuarkusApplication;
 import io.quarkus.runtime.annotations.QuarkusMain;
+
+import java.util.Collections;
 
 @QuarkusMain
 public class QuickStart implements QuarkusApplication {
@@ -33,11 +40,25 @@ public class QuickStart implements QuarkusApplication {
     @Override
     public int run(String... args) {
         final Logger LOG = LoggerFactory.getLogger(QuickStart.class);
+
+        LOG.info("QuickStart start...");
+        System.err.println(RestlightVer.version());
+
+        System.out.println("ResponseEntityChannelFactory:==>" + SpiLoader.cached(ResponseEntityChannelFactory.class).getAll());
+
+
         Restlight restlight = Restlight.forServer();
+        System.out.println("ResponseEntityChannelFactory:==>" + SpiLoader.cached(ResponseEntityChannelFactory.class)
+                .getByFeature(restlight.deployments().server().name(),
+                        true,
+                        Collections.singletonMap(Constants.INTERNAL, StringUtils.empty()),
+                        false));
         restlight.deployments().addController(HelloController.class, false);
         restlight.address(9999);
+
         restlight.start();
         LOG.info("QuickStart started...");
+
         restlight.await();
         return 0;
     }
