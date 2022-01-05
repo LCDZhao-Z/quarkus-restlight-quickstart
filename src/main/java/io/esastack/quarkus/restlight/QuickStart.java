@@ -32,7 +32,6 @@ import io.esastack.restlight.core.resolver.ResponseEntityResolverFactory;
 import io.esastack.restlight.core.spi.DefaultSerializerFactory;
 import io.esastack.restlight.core.spi.ExceptionResolverFactoryProvider;
 import io.esastack.restlight.core.spi.ExtensionsHandlerFactory;
-import io.esastack.restlight.core.spi.FilterFactory;
 import io.esastack.restlight.core.spi.FutureTransferFactory;
 import io.esastack.restlight.core.spi.HandlerAdviceFactory;
 import io.esastack.restlight.core.spi.HandlerFactoryProvider;
@@ -82,7 +81,6 @@ public class QuickStart implements QuarkusApplication {
 
         System.out.println("ParamResolverFactory:==>" + SpiLoader.cached(ParamResolverFactory.class).getAll());
         System.out.println("ResponseEntityResolverFactory:==>" + SpiLoader.cached(ResponseEntityResolverFactory.class).getAll());
-        System.out.println("FilterFactory:==>" + SpiLoader.cached(FilterFactory.class).getAll());
 
         System.out.println("ParamResolverProvider:==>" + SpiLoader.cached(ParamResolverProvider.class).getAll());
         System.out.println("ExceptionHandler:==>" + SpiLoader.cached(ExceptionHandler.class).getAll());
@@ -119,7 +117,7 @@ public class QuickStart implements QuarkusApplication {
         System.out.println("ExceptionHandlerFactory:==>" + SpiLoader.cached(ExceptionHandlerFactory.class).getAll());
         System.out.println("RequestEntityResolverProvider:==>" + SpiLoader.cached(RequestEntityResolverProvider.class).getAll());
         System.out.println("ResponseEntityResolverProvider:==>" + SpiLoader.cached(ResponseEntityResolverProvider.class).getAll());
-        
+
         System.out.println("ResponseEntityChannelFactory:==>" + SpiLoader.cached(ResponseEntityChannelFactory.class).getAll());
 
         Restlight restlight = Restlight.forServer();
